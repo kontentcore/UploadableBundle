@@ -38,11 +38,13 @@ class FileManager extends ContainerAware
     {
         foreach ($holders as $holder) {
             $originalPath = false;
-            if ($holder->getAnnotation()->isOverride() && ($id = $holder->getEntity()->getId())) {
-                $changeSet = $args->getEntityChangeSet();
+            if ($args instanceof PreUpdateEventArgs) {
+                if ($holder->getAnnotation()->isOverride() && ($id = $holder->getEntity()->getId())) {
+                    $changeSet = $args->getEntityChangeSet();
 
-                if ($changeSet && array_key_exists($holder->getPropertyName(), $changeSet)) {
-                    $originalPath = $changeSet[$holder->getPropertyName()][0];
+                    if ($changeSet && array_key_exists($holder->getPropertyName(), $changeSet)) {
+                        $originalPath = $changeSet[$holder->getPropertyName()][0];
+                    }
                 }
             }
 
