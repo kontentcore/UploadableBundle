@@ -11,14 +11,16 @@ namespace Youshido\UploadableBundle\Manager;
 use Doctrine\Common\EventArgs;
 use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Youshido\UploadableBundle\Holder\UploadParametersHolder;
 use Youshido\UploadableBundle\Tools\Namer\NamerInterface;
 
-class FileManager extends ContainerAware
+class FileManager implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
 
     private $baseUploadDir;
 
