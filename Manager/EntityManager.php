@@ -8,14 +8,16 @@
 namespace Youshido\UploadableBundle\Manager;
 
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Youshido\UploadableBundle\Annotations\Reader\UploadableReader;
 use Youshido\UploadableBundle\Holder\UploadParametersHolder;
 
-class EntityManager extends ContainerAware
+class EntityManager implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
 
     /**
      * @var UploadableReader
